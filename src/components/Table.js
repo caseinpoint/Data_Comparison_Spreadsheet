@@ -181,7 +181,7 @@ export default class Table extends React.Component {
 		const headers = this.state.columns.map((col) => {
 			if (!col.id.endsWith('avg')) {
 				let score = '';
-				if (col.type !== 't') score = <span className="text-primary" id={col.id}>&emsp;(score)</span>;
+				if (col.type !== 't') score = <span className="text-primary" id={col.id}>&ensp;(score)</span>;
 				return <th key={col.id} id={col.id} onClick={this.setColumnSort}>{col.name}{score}&ensp;{col.sort}</th>;
 			} else {
 				return (

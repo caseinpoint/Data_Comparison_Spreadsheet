@@ -59,8 +59,8 @@ export default class Cell extends React.Component {
 					return (
 						<td onDoubleClick={this.handleDblClick}>
 							<div className="row">
-								<div className="col-6">{this.state.value}</div>
-								<div className="col-6 text-primary">{this.state.score.toFixed(2)}</div>
+								<div className="col-lg-6 col-md-12">{this.state.value}</div>
+								<div className="col-lg-6 col-md-12 text-primary">{this.state.score.toFixed(2)}</div>
 							</div>
 						</td>
 					);
