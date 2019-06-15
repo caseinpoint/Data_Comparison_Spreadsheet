@@ -60,7 +60,7 @@ export default class App extends React.Component {
 
 	render() {
 		return (
-			<div className="container">
+			<div className="container-fluid">
 				<h1 className="text-center">Data Comparison Spreadsheet Tool</h1>
 				<div className="input-group mb-2">
 					<input className="form-control" type="text" placeholder="New Column Name" value={this.state.newCol}
@@ -77,14 +77,16 @@ export default class App extends React.Component {
 					<button className="btn btn-outline-danger" onClick={this.handleDelRow}>Delete Bottom Row</button>
 				</div>
 				<button className="btn btn-outline-danger mt-2" onClick={this.handleDelCol}>Delete Last Column</button>
-				<label className="ml-4 mt-2">Double-click cells to edit.</label>
+				<p className="mt-2">Double-click cells to edit.&ensp;Press 'Enter' to submit changes.</p>
 				<hr/>
-				<p>The <span className="btn btn-sm btn-outline-success">Text</span> button creates a new text column.&emsp;
-				The&nbsp;<span className="btn btn-sm btn-outline-success">Number ▼</span> button creates a number column that
-				scores larger numbers higher.&emsp;The <span className="btn btn-sm btn-outline-success">Number ▲</span> button
-				creates a number column that scores smaller numbers higher.&emsp;Scores are between 1 and 10, and are calculated
-				by percent rank out of the entire column.&emsp;Click column headers to sort.&emsp;Sort by&nbsp;
-				<span className="text-primary">[Average Score]</span> descending to see the rows in order of best overall.</p>
+				<p className="text-justify">The <span className="my-1 btn btn-sm btn-outline-success">Text</span> button creates
+				a new text column.&ensp;The <span className="my-1 btn btn-sm btn-outline-success">Number ▼</span> button creates
+				a number column that scores larger numbers higher.&ensp;The&nbsp;
+				<span className="my-1 btn btn-sm btn-outline-success">Number ▲</span> button creates a number column that scores
+				smaller numbers higher.&ensp;Scores are between 1 and 10, and are calculated by percent rank out of the entire
+				column.&ensp;Column scores are recalculated every time a cell is edited.&ensp;Click column headers to sort.
+				&ensp;Sort by <span className="text-primary">[Average Score]</span> descending to see the rows in order of best
+				overall.</p>
 			</div>
 		);
 	}

@@ -55,7 +55,7 @@ export default class Table extends React.Component {
 			this.setState({ colAvg: this.props.columns[this.props.columns.length - 1].id});
 		}
 		else if (this.props.columns.length > prevProps.columns.length && this.props.numRows > 0) {
-			// add new column to all rows
+			// add new column to all rows and update average key
 			const oldAvg = this.state.colAvg;
 			const newAvg = this.props.columns[this.props.columns.length - 1].id;
 			const col = this.props.columns[this.props.columns.length - 2];
@@ -72,7 +72,7 @@ export default class Table extends React.Component {
 			});
 			this.setState({ rows: rows, colAvg: newAvg });
 		} else if (this.props.columns.length < prevProps.columns.length && this.props.numRows > 0) {
-			// delete old column from all rows
+			// delete old column from all rows and update average key
 			const col = prevProps.columns[prevProps.columns.length - 2].id;
 			const oldAvg = this.state.colAvg;
 			const newAvg = this.props.columns[this.props.columns.length - 1].id;
@@ -193,7 +193,7 @@ export default class Table extends React.Component {
 		let rowNum = 1;
 		const body = this.state.rows.map((row) => {
 			let cells = [];
-			cells.push(<td key={'rowNum'+rowNum} className="text-muted">{rowNum}</td>);
+			cells.push(<td key={'rowNum'+rowNum} className="text-black-50">{rowNum}</td>);
 			for (let key in row) {
 				if (key !== 'id') {
 					cells.push(
@@ -212,10 +212,10 @@ export default class Table extends React.Component {
 
 		return (
 			<div className="table-responsive border table_box">
-				<table className="table table-bordered">
+				<table className="table table-bordered table-hover">
 					<thead className="thead-light">
 						<tr>
-							<th className="text-muted">[row]</th>
+							<th className="text-black-50">[row]</th>
 							{headers}
 						</tr>
 					</thead>

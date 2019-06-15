@@ -6,9 +6,10 @@ export default class Cell extends React.Component {
 		this.state = {
 			value: props.value,
 			score: props.score,
-			editing: true,
+			// editing: true,
+			editing: false,
 		};
-		if (props.colId.endsWith('avg')) this.state.editing = false;
+		// if (props.colId.endsWith('avg')) this.state.editing = false;
 		this.handleDblClick = this.handleDblClick.bind(this);
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -59,8 +60,8 @@ export default class Cell extends React.Component {
 					return (
 						<td onDoubleClick={this.handleDblClick}>
 							<div className="row">
-								<div className="col-lg-6 col-md-12">{this.state.value}</div>
-								<div className="col-lg-6 col-md-12 text-primary">{this.state.score.toFixed(2)}</div>
+								<div className="col-md-6 col-sm-12">{this.state.value}</div>
+								<div className="col-md-6 col-sm-12 text-primary">{this.state.score.toFixed(2)}</div>
 							</div>
 						</td>
 					);
