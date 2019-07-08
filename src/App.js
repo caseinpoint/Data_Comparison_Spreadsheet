@@ -1,6 +1,6 @@
 import React from 'react';
 import 'react-router';
-import {BrowserRouter, Route, Link, Redirect} from 'react-router-dom';
+import {BrowserRouter, Route, Link} from 'react-router-dom'; // , Redirect
 import Welcome from './components/Welcome';
 import TableContainer from './components/TableContainer';
 
