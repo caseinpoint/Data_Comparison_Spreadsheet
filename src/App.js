@@ -4,6 +4,7 @@ import {BrowserRouter, Route, Link} from 'react-router-dom';
 import Welcome from './components/Welcome';
 import LogReg from './components/LogReg';
 import TableContainer from './components/TableContainer';
+import { FirebaseContext } from './components/Firebase';
 
 export default class App extends React.Component {
 	// constructor(props) {
@@ -30,7 +31,9 @@ export default class App extends React.Component {
 						</div>
 					</div>
 					<Route exact path="/" component={Welcome}/>
-					<Route path="/login" component={LogReg} />
+					<FirebaseContext.Consumer>
+						{firebase => <Route path="/login" render={(props) => <LogReg {...props} firebase={firebase} />} />}
+					</FirebaseContext.Consumer>
 					<Route path="/new" component={TableContainer}/>
 				</div>
 			</BrowserRouter>

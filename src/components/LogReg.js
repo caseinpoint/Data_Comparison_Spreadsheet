@@ -1,4 +1,5 @@
 import React from 'react';
+// import { FirebaseContext } from './Firebase';
 
 export default class LogReg extends React.Component {
 	constructor(props) {
@@ -30,7 +31,32 @@ export default class LogReg extends React.Component {
 
 	handleRegister(event) {
 		event.preventDefault();
-		console.log(event);
+		let valid = true;
+		let errors = { regEmailErr: '', regPassErr: '', regConfirmErr: '' };
+		if (this.state.regEmail.length === 0) {
+			valid = false;
+			errors['regEmailErr'] = 'Email is required';
+		}
+		if (this.state.regPass.length < 8) {
+			valid = false;
+			errors['regPassErr'] = 'Password must be at least 8 characters';
+		}
+		if (this.state.regConfirm !== this.state.regPass) {
+			valid = false;
+			errors['regConfirmErr'] = 'Passwords must match';
+		}
+		this.setState(errors);
+		if (valid) {
+			this.props.firebase
+				.doCreateUserWithEmailAndPassword(this.state.regEmail, this.state.regPass)
+				.then(authUser => {
+					console.log(authUser);
+					this.props.history.push('/');
+				})
+				.catch(error => {
+					this.setState({ regEmailErr: error['message'] });
+				});
+		}
 	}
 
 	render() {
@@ -42,11 +68,13 @@ export default class LogReg extends React.Component {
 					<form onSubmit={this.handleLogin}>
 						<div className="form-group">
 							<label>Email:</label>
-							<input className="form-control" type="email" value={this.state.logEmail} name="logEmail" onChange={this.handleInputChange} />
+							<input className="form-control" type="email" value={this.state.logEmail} name="logEmail"
+							onChange={this.handleInputChange} />
 						</div>
 						<div className="form-group">
 							<label>Password:</label>
-							<input className="form-control" type="password" value={this.state.logPass} name="logPass" onChange={this.handleInputChange} />
+							<input className="form-control" type="password" value={this.state.logPass} name="logPass"
+							onChange={this.handleInputChange} />
 						</div>
 						<button type="submit" className="btn btn-primary">Login</button>
 					</form>
@@ -56,18 +84,21 @@ export default class LogReg extends React.Component {
 					<form onSubmit={this.handleRegister}>
 						<div className="form-group">
 							<label>Email:</label>
-							<label className="text-danger">{this.state.regEmailErr}</label>
-							<input className="form-control" type="email" value={this.state.regEmail} name="regEmail" onChange={this.handleInputChange} />
+							<label className="text-danger">&ensp;{this.state.regEmailErr}</label>
+							<input className="form-control" type="email" value={this.state.regEmail} name="regEmail"
+							onChange={this.handleInputChange} placeholder="email@example.com" />
 						</div>
 						<div className="form-group">
 							<label>Password:</label>
-							<label className="text-danger">{this.state.regPassErr}</label>
-							<input className="form-control" type="password" value={this.state.regPass} name="regPass" onChange={this.handleInputChange} />
+							<label className="text-danger">&ensp;{this.state.regPassErr}</label>
+							<input className="form-control" type="password" value={this.state.regPass} name="regPass"
+							onChange={this.handleInputChange} placeholder="at least 8 characters" />
 						</div>
 						<div className="form-group">
 							<label>Confirm Password:</label>
-							<label className="text-danger">{this.state.regConfirmErr}</label>
-							<input className="form-control" type="password" value={this.state.regConfirm} name="regConfirm" onChange={this.handleInputChange} />
+							<label className="text-danger">&ensp;{this.state.regConfirmErr}</label>
+							<input className="form-control" type="password" value={this.state.regConfirm} name="regConfirm"
+							onChange={this.handleInputChange} placeholder="must match password" />
 						</div>
 						<button type="submit" className="btn btn-success">Register</button>
 					</form>
