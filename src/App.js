@@ -1,7 +1,8 @@
 import React from 'react';
 import 'react-router';
-import {BrowserRouter, Route, Link} from 'react-router-dom'; // , Redirect
+import {BrowserRouter, Route, Link} from 'react-router-dom';
 import Welcome from './components/Welcome';
+import LogReg from './components/LogReg';
 import TableContainer from './components/TableContainer';
 
 export default class App extends React.Component {
@@ -13,7 +14,6 @@ export default class App extends React.Component {
 	// }
 
 	render() {
-		// <Link to="/load" className="btn btn-secondary"><strong>Load</strong></Link>
 		return (
 			<BrowserRouter>
 				<div className="container-fluid">
@@ -24,11 +24,13 @@ export default class App extends React.Component {
 						<div className="col-lg-4 col-md-12 pt-lg-2 pb-md-2">
 							<div className="btn-group">
 								<Link to="/" className="btn btn-primary"><strong>Home</strong></Link>
-								<Link to="/new" className="btn btn-success"><strong>New</strong></Link>
+								<Link to="/login" className="btn btn-info"><strong>Login | Register</strong></Link>
+								<Link to="/new" className="btn btn-success"><strong>New Sheet</strong></Link>
 							</div>
 						</div>
 					</div>
 					<Route exact path="/" component={Welcome}/>
+					<Route path="/login" component={LogReg} />
 					<Route path="/new" component={TableContainer}/>
 				</div>
 			</BrowserRouter>
