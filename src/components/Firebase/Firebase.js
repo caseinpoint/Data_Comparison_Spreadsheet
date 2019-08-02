@@ -1,6 +1,7 @@
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 
+/* !!! move this to an environment variable !!! */
 const firebaseConfig = {
 	apiKey: "AIzaSyCm2gsdrHrCWZgG3dH-Gm0w6HsrO3ykGWs",
 	authDomain: "data-comparison.firebaseapp.com",
@@ -26,7 +27,7 @@ export default class Firebase {
 	doSignOut = () => this.auth.signOut();
 
 	// doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
-	//
+
 	// doPasswordUpdate = password =>
 	// 	this.auth.currentUser.updatePassword(password);
 }

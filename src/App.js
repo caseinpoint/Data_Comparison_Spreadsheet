@@ -10,26 +10,27 @@ export default class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			user: null
+			userID: localStorage.getItem('userID')
 		};
 		this.setUser = this.setUser.bind(this);
 		this.handleLogout = this.handleLogout.bind(this);
-		// console.log(props.firebase);
 	}
 
 	setUser(authUser) {
-		this.setState({ user: authUser });
+		localStorage.setItem('userID', authUser.user.uid);
+		this.setState({ userID: authUser });
 		// console.log(authUser.user.email);
 	}
 
-	handleLogout(event) {
+	handleLogout() {
+		localStorage.removeItem('userID');
 		this.props.firebase.doSignOut();
-		this.setState({ user: null });
+		this.setState({ userID: null });
 	}
 
 	render() {
 		var userLink = <Link to="/login" className="btn btn-info"><strong>Login | Register</strong></Link>
-		if (this.state.user !== null) {
+		if (this.state.userID !== null) {
 			userLink = <button type="button" className="btn btn-danger" onClick={this.handleLogout}><strong>Logout</strong></button>
 		}
 		return (
