@@ -5,15 +5,10 @@ export default class LogReg extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			logEmail: '',
-			logPass: '',
-			logErr: '',
-			regEmail: '',
-			regEmailErr: '',
-			regPass: '',
-			regPassErr: '',
-			regConfirm: '',
-			regConfirmErr: ''
+			logEmail: '', logPass: '', logErr: '',
+			regEmail: '', regEmailErr: '',
+			regPass: '', regPassErr: '',
+			regConfirm: '', regConfirmErr: ''
 		};
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleLogin = this.handleLogin.bind(this);
@@ -26,7 +21,21 @@ export default class LogReg extends React.Component {
 
 	handleLogin(event) {
 		event.preventDefault();
-		console.log(event);
+		if (this.state.logEmail === '' || this.state.logPass === '') {
+			this.setState({ logErr: 'Email and password are required' });
+		} else {
+			this.props.firebase
+				.doSignInWithEmailAndPassword(this.state.logEmail, this.state.logPass)
+				.then(authUser => {
+					// console.log(authUser);
+					this.props.setUser(authUser);
+					this.props.history.push('/');
+				})
+				.catch(error => {
+					// console.log(error);
+					this.setState({ logErr: 'Invalid login credentials' });
+				});
+		}
 	}
 
 	handleRegister(event) {
@@ -50,10 +59,12 @@ export default class LogReg extends React.Component {
 			this.props.firebase
 				.doCreateUserWithEmailAndPassword(this.state.regEmail, this.state.regPass)
 				.then(authUser => {
-					console.log(authUser);
+					// console.log(authUser);
+					this.props.setUser(authUser);
 					this.props.history.push('/');
 				})
 				.catch(error => {
+					// console.log(error);
 					this.setState({ regEmailErr: error['message'] });
 				});
 		}

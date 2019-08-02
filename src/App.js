@@ -7,12 +7,19 @@ import TableContainer from './components/TableContainer';
 import { FirebaseContext } from './components/Firebase';
 
 export default class App extends React.Component {
-	// constructor(props) {
-	// 	super(props);
-	// 	this.state = {
-	//
-	// 	};
-	// }
+	constructor(props) {
+		super(props);
+		this.state = {
+			user: null
+		};
+		this.setUser = this.setUser.bind(this);
+		// console.log(props.firebase);
+	}
+
+	setUser(authUser) {
+		this.setState({ user: authUser });
+		// console.log(authUser.user.email);
+	}
 
 	render() {
 		return (
@@ -32,7 +39,7 @@ export default class App extends React.Component {
 					</div>
 					<Route exact path="/" component={Welcome}/>
 					<FirebaseContext.Consumer>
-						{firebase => <Route path="/login" render={(props) => <LogReg {...props} firebase={firebase} />} />}
+						{firebase => <Route path="/login" render={(props) => <LogReg {...props} firebase={firebase} setUser={this.setUser} />} />}
 					</FirebaseContext.Consumer>
 					<Route path="/new" component={TableContainer}/>
 				</div>
