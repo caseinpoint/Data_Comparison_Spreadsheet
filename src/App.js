@@ -13,6 +13,7 @@ export default class App extends React.Component {
 			user: null
 		};
 		this.setUser = this.setUser.bind(this);
+		this.handleLogout = this.handleLogout.bind(this);
 		// console.log(props.firebase);
 	}
 
@@ -21,7 +22,16 @@ export default class App extends React.Component {
 		// console.log(authUser.user.email);
 	}
 
+	handleLogout(event) {
+		this.props.firebase.doSignOut();
+		this.setState({ user: null });
+	}
+
 	render() {
+		var userLink = <Link to="/login" className="btn btn-info"><strong>Login | Register</strong></Link>
+		if (this.state.user !== null) {
+			userLink = <button type="button" className="btn btn-danger" onClick={this.handleLogout}><strong>Logout</strong></button>
+		}
 		return (
 			<BrowserRouter>
 				<div className="container-fluid">
@@ -32,7 +42,7 @@ export default class App extends React.Component {
 						<div className="col-lg-4 col-md-12 pt-lg-2 pb-md-2">
 							<div className="btn-group">
 								<Link to="/" className="btn btn-primary"><strong>Home</strong></Link>
-								<Link to="/login" className="btn btn-info"><strong>Login | Register</strong></Link>
+								{userLink}
 								<Link to="/new" className="btn btn-success"><strong>New Sheet</strong></Link>
 							</div>
 						</div>
