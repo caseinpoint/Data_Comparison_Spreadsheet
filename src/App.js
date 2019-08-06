@@ -4,7 +4,7 @@ import {BrowserRouter, Route, Link} from 'react-router-dom';
 import Welcome from './components/Welcome';
 import LogReg from './components/LogReg';
 import TableContainer from './components/TableContainer';
-import LoadTable from './components/LoadTable';
+import ListTable from './components/ListTable';
 import { FirebaseContext } from './components/Firebase';
 
 export default class App extends React.Component {
@@ -62,7 +62,7 @@ export default class App extends React.Component {
 					</FirebaseContext.Consumer>
 					<Route path="/new" component={TableContainer}/>
 					<FirebaseContext.Consumer>
-						{firebase => <Route exact path="/load" render={(props) => <LoadTable {...props} firebase={firebase} />} />}
+						{firebase => <Route exact path="/load" render={(props) => <ListTable {...props} firebase={firebase} />} />}
 					</FirebaseContext.Consumer>
 				</div>
 			</BrowserRouter>

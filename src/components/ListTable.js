@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class LoadTable extends React.Component {
+export default class ListTable extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {};
