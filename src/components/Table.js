@@ -139,7 +139,7 @@ export default class Table extends React.Component {
 			if (n < num) smaller++;
 			else if (n > num) larger++;
 		}
-		if (smaller === 0 && larger === 0) return 5.5;
+		if (smaller === 0 && larger === 0) return 10;
 		else return smaller / (smaller + larger) * 9 + 1;
 	}
 

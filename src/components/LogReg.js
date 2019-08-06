@@ -1,5 +1,4 @@
 import React from 'react';
-// import { FirebaseContext } from './Firebase';
 
 export default class LogReg extends React.Component {
 	constructor(props) {
