@@ -6,9 +6,13 @@ export default class TableContainer extends React.Component {
 		super(props);
 		this.state = {
 			newCol: '',
-			columns: [{ id: 'col0avg', name: '[Average Score]', type: 1, sort: '▽' }],
-			numRows: 0
 		};
+		if (props.numRows === undefined) this.state['numRows'] = 0;
+		else this.state['numRows'] = props.numRows;
+
+		if (props.columns === undefined) this.state['columns'] = [{id: 'col0avg', name: '[Average Score]', type: 1, sort: '▽'}];
+		else this.state['columns'] = props.columns;
+
 		this.handleColInputChange = this.handleColInputChange.bind(this);
 		this.handleNewCol = this.handleNewCol.bind(this);
 		this.handleDelCol = this.handleDelCol.bind(this);

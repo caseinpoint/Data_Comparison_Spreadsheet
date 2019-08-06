@@ -7,10 +7,14 @@ export default class Table extends React.Component {
 		super(props);
 		this.state = {
 			columns: props.columns,
-			colAvg: 'col0avg',
 			numRows: props.numRows,
-			rows: []
 		};
+		if (props.colAvg === undefined) this.state['colAvg'] = 'col0avg';
+		else this.state['colAvg'] = props.colAvg;
+
+		if (props.rows === undefined) this.state['rows'] = [];
+		else this.state['rows'] = props.rows;
+
 		this.componentDidUpdate = this.componentDidUpdate.bind(this);
 		this.updateCell = this.updateCell.bind(this);
 		this.setColumnSort = this.setColumnSort.bind(this);
