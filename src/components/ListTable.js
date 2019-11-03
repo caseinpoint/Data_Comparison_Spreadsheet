@@ -1,5 +1,6 @@
 import React from 'react';
 
+// this component will load saved sheets from Firebase and display links to them.
 export default class ListTable extends React.Component {
 	constructor(props) {
 		super(props);

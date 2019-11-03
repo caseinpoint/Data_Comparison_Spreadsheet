@@ -87,7 +87,7 @@ export default class TableContainer extends React.Component {
 				a number column that scores larger numbers higher.&ensp;The&nbsp;
 				<span className="my-1 btn btn-sm btn-outline-success">Number ▲</span> button creates a number column that scores
 				smaller numbers higher.&ensp;Scores are between 1 and 10, and are calculated by percent rank out of the entire
-				column.&ensp;Column scores are recalculated every time a cell is edited.&ensp;Click column headers to sort.
+				column.&ensp;Column scores and row averages are recalculated every time a cell is edited.&ensp;Click column headers to sort.
 				&ensp;Sort by <span className="text-primary">[Average Score]</span> descending to see the rows in order of best
 				overall.</p>
 			</div>

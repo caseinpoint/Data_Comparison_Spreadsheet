@@ -183,10 +183,30 @@ export default class Table extends React.Component {
 
 	render() {
 		const headers = this.state.columns.map((col) => {
+			// console.log(col);
 			if (!col.id.endsWith('avg')) {
-				let score = '';
-				if (col.type !== 't') score = <span className="text-primary" id={col.id}>&ensp;(score)</span>;
-				return <th key={col.id} id={col.id} onClick={this.setColumnSort}>{col.name}{score}&ensp;{col.sort}</th>;
+				let score = ''; let th;
+				if (col.type !== 't') {
+					score = <span className="text-primary" id={col.id}>&ensp;(score)</span>;
+					th = (
+						<th key={col.id} id={col.id} onClick={this.setColumnSort}>
+							<div className="row">
+								<div className="col-7">{col.name}{score}&ensp;{col.sort}</div>
+								<div className="col-5">
+									<select className="form-control form-control-sm">
+										<option value="1">Weight</option>
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+									</select>
+								</div>
+							</div>
+						</th>
+					);
+				} else {
+					th = (<th key={col.id} id={col.id} onClick={this.setColumnSort}>{col.name}{score}&ensp;{col.sort}</th>);
+				}
+				return th;
 			} else {
 				return (
 					<th className="text-primary" key={col.id} id={col.id} onClick={this.setColumnSort}>{col.name}&ensp;{col.sort}</th>
