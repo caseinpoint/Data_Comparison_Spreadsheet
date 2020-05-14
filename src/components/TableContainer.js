@@ -32,7 +32,7 @@ export default class TableContainer extends React.Component {
 			let type = 't';
 			if (event.target.name === '+') type = 1;
 			else if (event.target.name === '-') type = -1;
-			cols.push({ id: 'col' + cols.length, name: text, type: type, sort: '' });
+			cols.push({ id: 'col' + cols.length, name: text, type: type, sort: '', weight: 1 });
 			avg.id = 'col' + cols.length + 'avg';
 			cols.push(avg);
 			this.setState({ columns: cols, newCol: '' });

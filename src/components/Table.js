@@ -186,7 +186,7 @@ export default class Table extends React.Component {
 			// console.log(col);
 			if (!col.id.endsWith('avg')) {
 				let score = ''; let th;
-				if (col.type !== 't') {
+				if (col.type !== 't') { // column weights will go here
 					score = <span className="text-primary" id={col.id}>&ensp;(score)</span>;
 					th = (
 						<th key={col.id} id={col.id} onClick={this.setColumnSort}>
